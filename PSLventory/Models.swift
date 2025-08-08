@@ -10,23 +10,38 @@ import FirebaseFirestore
 
 struct Item: Identifiable, Codable {
     @DocumentID var id: String?
-    var name: String
-    var category: String
-    var totalQuantity: Int
     var availableQuantity: Int
+    var category: String
+    var name: String
+    var number: Int
+    var project: String
+    var qr: String
     var description: String
-    var imageURL: String?
+    var subcategories: String
+    var totalQuantity: Int
     var createdAt: Date
-    
-    init(name: String, category: String, totalQuantity: Int, description: String = "", imageURL: String? = nil) {
-        self.name = name
-        self.category = category
-        self.totalQuantity = totalQuantity
-        self.availableQuantity = totalQuantity
-        self.description = description
-        self.imageURL = imageURL
-        self.createdAt = Date()
-    }
+        
+        init(category: String,
+             name: String,
+             number: Int,
+             project: String,
+             qr: String,
+             subcategories: String,
+             totalQuantity: Int,
+             description: String = "") {
+            
+            
+            self.category = category
+            self.name = name
+            self.number = number
+            self.project = project
+            self.qr = qr
+            self.subcategories = subcategories
+            self.availableQuantity = totalQuantity
+            self.totalQuantity = totalQuantity
+            self.description = description
+            self.createdAt = Date()
+        }
 }
 
 struct Loan: Identifiable, Codable {

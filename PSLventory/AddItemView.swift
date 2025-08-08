@@ -13,9 +13,14 @@ struct AddItemView: View {
     @EnvironmentObject var firebaseManager: FirebaseManager
     
     @State private var name = ""
+    @State private var number = 1
     @State private var category = ""
+    @State private var subcategories = ""
+    @State private var project = ""
+    @State private var qr = ""
     @State private var quantity = 1
     @State private var description = ""
+    
     
     let categories = ["Electrónicos", "Herramientas", "Oficina", "Laboratorio", "Accesorios", "Otros"]
     
@@ -49,8 +54,12 @@ struct AddItemView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Guardar") {
                         let newItem = Item(
-                            name: name,
                             category: category,
+                            name: name,
+                            number: number,
+                            project: project,
+                            qr: qr,
+                            subcategories: subcategories,
                             totalQuantity: quantity,
                             description: description
                         )

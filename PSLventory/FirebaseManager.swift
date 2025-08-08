@@ -22,7 +22,7 @@ class FirebaseManager: ObservableObject {
     
     func fetchItems() {
         isLoading = true
-        db.collection("items").addSnapshotListener { snapshot, error in
+        db.collection("OFFICE").addSnapshotListener { snapshot, error in
             DispatchQueue.main.async {
                 self.isLoading = false
                 if let documents = snapshot?.documents {
@@ -48,7 +48,7 @@ class FirebaseManager: ObservableObject {
     
     func addItem(_ item: Item) {
         do {
-            try db.collection("items").addDocument(from: item)
+            try db.collection("OFFICE").addDocument(from: item)
         } catch {
             print("Error adding item: \(error)")
         }
@@ -66,7 +66,7 @@ class FirebaseManager: ObservableObject {
                 updatedItem.availableQuantity -= 1
                 
                 if let id = updatedItem.id {
-                    try db.collection("items").document(id).setData(from: updatedItem)
+                    try db.collection("OFFICE").document(id).setData(from: updatedItem)
                 }
             }
         } catch {
@@ -92,7 +92,7 @@ class FirebaseManager: ObservableObject {
                 updatedItem.availableQuantity += 1
                 
                 if let itemId = updatedItem.id {
-                    try db.collection("items").document(itemId).setData(from: updatedItem)
+                    try db.collection("OFFICE").document(itemId).setData(from: updatedItem)
                 }
             }
         } catch {
@@ -100,4 +100,3 @@ class FirebaseManager: ObservableObject {
         }
     }
 }
-
